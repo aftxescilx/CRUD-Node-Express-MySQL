@@ -1,0 +1,38 @@
+<%- include('../layout/header.ejs') %>
+
+            <div class="card-header">
+                Lista de Beneficiarios |  
+                <a name="" id="" class="" href="/beneficiario/crear" role="button">Añadir</a>
+            </div>
+            <table class="table table-light">
+                <thead class="thead-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>RFC</th>
+                        <th>Aciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for( let beneficiarios = 0; beneficiarios < beneficiario.length; beneficiarios++ ) { %>
+                        <tr>
+                            <td><%= beneficiario[beneficiarios].idBeneficiario %></td>
+                            <td><%= beneficiario[beneficiarios].nombre %></td>
+                            <td><%= beneficiario[beneficiarios].rfc %></td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Button group">
+                                    <form method="get" action="/beneficiario/editar/<%= beneficiario[beneficiarios].idBeneficiario %>">
+                                        <button class="btn btn-link" type="submit">Editar</button> | 
+                                    </form>
+                                </div>
+                                <div class="btn-group" role="group" aria-label="Button group">
+                                    <form method="post" action="/beneficiario/eliminar/<%= beneficiario[beneficiarios].idBeneficiario %>">
+                                        <button class="btn btn-link" type="submit">Eliminar</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+<%- include('../layout/footer.ejs') %>
